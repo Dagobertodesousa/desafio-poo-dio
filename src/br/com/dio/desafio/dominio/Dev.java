@@ -23,18 +23,10 @@ public class Dev {
     }
 
     public double calcularTotalXp() {
-        Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
-        double soma = 0;
-        while(iterator.hasNext()){
-            double next = iterator.next().calcularXp();
-            soma += next;
-        }
-        return soma;
-
-        /*return this.conteudosConcluidos
+        return this.conteudosConcluidos
                 .stream()
                 .mapToDouble(Conteudo::calcularXp)
-                .sum();*/
+                .sum();
     }
 
 
@@ -48,6 +40,28 @@ public class Dev {
 
     public Set<Conteudo> getConteudosInscritos() {
         return conteudosInscritos;
+    }
+
+    public boolean consultarConteudoInscrito(String consulta){
+        return this.getConteudosInscritos().stream().anyMatch(n -> n.getTitulo().toLowerCase().startsWith(consulta.toLowerCase()));
+    }
+
+    public boolean consultarConteudoConcluido(String consulta){
+        return this.getConteudosConcluidos().stream().anyMatch(n -> n.getTitulo().toLowerCase().startsWith(consulta.toLowerCase()));
+    }
+
+    public String tipoConteudo(String consulta){
+        if (this.consultarConteudoConcluido(consulta)){
+            String result = this.getConteudosConcluidos().stream()
+                .map(n -> n
+                    .getTitulo()
+                    .toLowerCase()
+                    .startsWith(consulta.toLowerCase())
+                )
+                .toString();
+            return result;
+        }
+        return "consulta não encontrada";
     }
 
     public void setConteudosInscritos(Set<Conteudo> conteudosInscritos) {
