@@ -10,6 +10,7 @@ public class Curso extends Conteudo{
     }
 
     public Curso() {
+        //this.cursoCriado();
     }
 
 
@@ -21,12 +22,16 @@ public class Curso extends Conteudo{
         this.cargaHoraria = cargaHoraria;
     }
 
+    public void cursoCriado(){
+        System.out.println("Novo Curso foi criado");
+    }
+
     @Override
     public String toString() {
         return "Curso{" +
                 "titulo='" + getTitulo() + '\'' +
                 ", descricao='" + getDescricao() + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
-                '}';
+                "}";
     }
 }

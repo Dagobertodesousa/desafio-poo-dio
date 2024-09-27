@@ -27,6 +27,6 @@ public class Especial extends Conteudo{
                 "titulo='" + getTitulo() + '\'' +
                 ", descricao='" + getDescricao() + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
-                '}';
+                "}";
     }
 }

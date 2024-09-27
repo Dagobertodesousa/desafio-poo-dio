@@ -2,23 +2,17 @@ package br.com.dio.desafio.dominio;
 
 public class Workshop extends Conteudo{
 
-    private int cargaHoraria;
-
     @Override
     public double calcularXp() {
         return XP_PADRAO * 2;
     }
 
     public Workshop() {
+        //this.workShopCriado();
     }
-
-
-    public int getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
+    
+    public void workShopCriado(){
+        System.out.println("Novo WorkShop foi criado");
     }
 
     @Override
@@ -26,7 +20,7 @@ public class Workshop extends Conteudo{
         return "Workshop{" +
                 "titulo='" + getTitulo() + '\'' +
                 ", descricao='" + getDescricao() + '\'' +
-                ", cargaHoraria=" + cargaHoraria +
-                '}';
+                ", cargaHoraria=" + getCargaHoraria() +
+                "}";
     }
 }

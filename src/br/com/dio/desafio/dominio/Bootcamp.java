@@ -13,6 +13,7 @@ public class Bootcamp {
     private final LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    private Integer cargaHorariaTotal;
 
 
     public String getNome() {
@@ -47,12 +48,40 @@ public class Bootcamp {
         this.devsInscritos = devsInscritos;
     }
 
+    public String isPresentConteudo(Conteudo conteudo){
+        if (getConteudos().stream().anyMatch(n -> n.equals(conteudo))){
+            return "Conteudo " + conteudo.getTitulo() + " encontrado na lista.";
+        }
+        return "Conteudo não consta.";
+    }
+
     public Set<Conteudo> getConteudos() {
         return conteudos;
     }
 
+    public static String imprimirConteudo(Set<Conteudo> listaConteudo){
+        String conteudo = listaConteudo.stream()
+            .map(n -> n.getTitulo().toUpperCase() + ":\n" + n.getDescricao() + "\n")
+            .reduce("", (n1, n2) -> n1.concat(n2));
+        return "Conteudo " + conteudo;
+    }
+
     public void setConteudos(Set<Conteudo> conteudos) {
         this.conteudos = conteudos;
+    }
+
+    public Integer calcularCargaHorariaTotal() {
+        return getConteudos().stream()
+                    .mapToInt(h -> h.getCargaHoraria())
+                    .reduce(0, Integer::sum);
+    }
+
+    public Integer getCargaHorariaTotal() {
+        return cargaHorariaTotal;
+    }
+
+    public void setCargaHorariaTotal() {
+        this.cargaHorariaTotal = getCargaHorariaTotal();
     }
 
     @Override
